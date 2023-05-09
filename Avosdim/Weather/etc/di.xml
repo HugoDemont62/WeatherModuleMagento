@@ -1,0 +1,32 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="/lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <!-- Image Uploader -->
+    <virtualType name="VirtualTypeName" type="Avosdim\Weather\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">avosdimweather/tmp/image</argument>
+            <argument name="basePath" xsi:type="string">avosdimweather/image</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Avosdim\Weather\Controller\Adminhtml\Image\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">VirtualTypeName</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <!--name format is UiComponent file name__data_source -->
+                <item name="avosdim_weather_image_listing_data_source" xsi:type="string">
+                    Avosdim\Weather\Model\ResourceModel\Listingicon\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

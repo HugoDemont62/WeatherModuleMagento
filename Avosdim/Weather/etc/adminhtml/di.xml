@@ -1,0 +1,15 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="/lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <virtualType name="Avosdim\Weather\Model\ResourceModel\Listingicon\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">
+                avosdim_weather_image
+            </argument>
+            <argument name="resourceModel" xsi:type="string">
+                Avosdim\Weather\Model\ResourceModel\Listingicon
+            </argument>
+        </arguments>
+    </virtualType>
+
+</config>

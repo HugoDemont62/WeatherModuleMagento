@@ -1,0 +1,24 @@
+{
+    "avosdim_weather_image": {
+        "column": {
+            "image_id": true,
+            "path": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "avosdim_weather_set": {
+        "column": {
+            "set_id": true,
+            "set_name": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

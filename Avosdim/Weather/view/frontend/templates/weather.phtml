@@ -1,0 +1,61 @@
+<?php
+
+use Avosdim\Weather\ViewModel\Weather;
+
+/** @var Weather $viewModel */
+/** @var Magento\Framework\View\Element\Template $block */
+
+//Initialisation of the variables for the view
+$viewModel = $block->getAvosdimWeatherViewModel();
+$moduleStatus = $viewModel->getIfIsEnabled();
+
+
+if ($moduleStatus) {//If the module is enabled
+    $apiUrl = $viewModel->getApiUrl();
+    $apiKey = $viewModel->getApiKey();
+    $city = $viewModel->getCity();
+    $tempUnit = $viewModel->getTempetatureUnit();
+    $lang = $viewModel->getLang();
+
+    $url = http_build_query([//Build the url
+        'q' => $city,
+        'appid' => $apiKey,
+        'lang' => $lang,
+        'units' => $tempUnit
+    ]);
+    $url = $apiUrl . '?' . $url;//Add the url to the api url
+    $data = $viewModel->getWeatherData($url);//Get the data from the api
+
+    $icon = $data['weather'][0]['icon'];//Get the icon from the data
+    $result = $viewModel->getImageDataFromCustomDB($icon);//Get the image path from the database
+    $country = $data['sys']['country'];//Get the country from the data
+    $tempUnitMin = $tempUnit === 'metric' ? $data['main']['temp'] . '°C' : $data['main']['temp'] . '°F';
+    $tempUnitMax = $tempUnit === 'metric' ? $data['main']['temp_max'] . '°C' : $data['main']['temp_max'] . '°F';
+    $weatherInfo = $data['weather'][0]['description'];
+
+
+    echo "<div class='weather' title='" . $weatherInfo . "'>
+            <div>
+                <div><i>
+                " . $weatherInfo . " </i>
+                </div>
+                <div class='weatherInfo'><i>
+                 " . $tempUnitMin . " / " . $tempUnitMax . "
+                 </i>
+                </div>
+            </div>
+
+            <div class='weatherTitle'><i>
+            " . $country . " </i>" . $city . "
+         </div>";
+    if ($result[0]['original_path']) {
+        $image = $result[0]['image_name'];//Get the image path from the data?>
+        <img src='<?php echo $this->getViewFileUrl("Avosdim_Weather::images/icons/" . $image . ".png") ?>'
+             class="weatherImage" alt="" ><?php
+    } else {
+        $image = $result[0]['path'];//Get the image path from the data?>
+        <img src='<?php echo $viewModel->getMediaDir() . $image; ?>' class="weatherImage" alt=""><?php
+    }
+    echo "</div>";
+}
+

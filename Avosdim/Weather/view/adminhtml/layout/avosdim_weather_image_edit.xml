@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="avosdim_weather_image_edit"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="avosdim_extensions" translate="label" sortOrder="10">
+            <label>Avosdim Extensions</label>
+        </tab>
+        <section id="avosdim_weather" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10"
+                 translate="label">
+            <label>Weather</label>
+            <tab>avosdim_extensions</tab>
+            <resource>Avosdim_Weather::system_config</resource>
+            <group id="general" type="text" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>General</label>
+                <comment>Le module de Avosdim pour la météo basé sur l'API OpenWeatherMap</comment>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_url" translate="label" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>API URL</label>
+                    <frontend_model>Avosdim\Weather\Block\Adminhtml\System\Config\Form\Field\Disabled</frontend_model>
+                </field>
+                <field id="api_key" translate="label" type="obscure" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>API KEY</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+            </group>
+            <group id="localization" type="text" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Localization</label>
+                <field id="city" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>city</label>
+                </field>
+                <field id="temp" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Température</label>
+                    <source_model>Avosdim\Weather\Model\Config\Source\Temp</source_model>
+                </field>
+                <field id="lang" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Language</label>
+                    <source_model>Avosdim\Weather\Model\Config\Source\Lang</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

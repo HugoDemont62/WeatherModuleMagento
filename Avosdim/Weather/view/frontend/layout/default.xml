@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Avosdim_Weather::css/mycss.css" />
+    </head>
+
+    <body>
+        <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Template" name="weather" template="Avosdim_Weather::weather.phtml">
+                <arguments>
+                    <argument name="avosdim_weather_view_model" xsi:type="object">
+                        \Avosdim\Weather\ViewModel\Weather
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Avosdim_Weather::weather_menu" title="Avosdim Modules Manager" module="Avosdim_Weather" sortOrder="20"
+             resource="Avosdim_Weather::weather"/>
+        <add id="Avosdim_Weather::post" title="Weather Manager Icon" translate="title" module="Avosdim_Weather" sortOrder="1"
+             parent="Avosdim_Weather::weather_menu" action="avosdim_weather/image/index"
+             resource="Avosdim_Weather::image"/>
+    </menu>
+</config>
